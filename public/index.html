@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js" crossorigin="anonymous"></script>
+    <script src="/index.js" type="text/javascript"></script>
+  </head>
+  <body ng-app="app" strict-di>
+    <div ng-controller="ColatzController as cz">
+      <h1>Hailstone / Colatz</h1>
+      <label for="colatz-input">Starting Number</label>
+      <input type="number" id="colatz-input" ng-model="cz.input">
+      <button ng-click="cz.runSequence()">start</button>
+      <button ng-click="cz.reset()">reset</button>
+      <ol ng-if="cz.displaySequence">
+        <li ng-repeat="number in cz.sequence track by $index">{{::number}}</li>
+      </ol>
+    </div>
+  </body>
+</html>
