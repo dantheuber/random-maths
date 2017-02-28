@@ -1,22 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
-    
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js" crossorigin="anonymous"></script>
     <script src="/index.js" type="text/javascript"></script>
   </head>
-  <body ng-app="app" strict-di>
-    <div ng-controller="ColatzController as cz">
-      <h1>Hailstone / Colatz</h1>
-      <label for="colatz-input">Starting Number</label>
-      <input type="number" id="colatz-input" ng-model="cz.input">
-      <button ng-click="cz.runSequence()">start</button>
-      <button ng-click="cz.reset()">reset</button>
-      <ol ng-if="cz.displaySequence">
-        <li ng-repeat="number in cz.sequence track by $index">{{::number}}</li>
-      </ol>
+  <body ng-app="app" strict-di class="container">
+    <div class="row">
+      <div ng-controller="ColatzController as cz" class="col-md-6">
+        <h1>Hailstone / Colatz</h1>
+        <label for="colatz-input">Starting Number</label>
+        <input type="number" id="colatz-input" ng-model="cz.input">
+        <button ng-click="cz.runSequence()">start</button>
+        <button ng-click="cz.reset()">reset</button>
+        <ol ng-if="cz.displaySequence">
+          <li ng-repeat="number in cz.sequence track by $index">{{::number}}</li>
+        </ol>
+      </div>
+      <div ng-controller="KaprekarController as kc" class="col-md-6">
+        <h1>Kaprekars Constant - 6174</h1>
+        <label for="kaprekar-input">Starting Number</label>
+        <input type="text" id="kaprekar-input" ng-model="kc.input" placeholder="0001 - not 0000">
+        <input type="button" ng-disabled="!kc.inputIsValid()" ng-click="kc.start()" value="start"></button>
+        <button ng-click="kc.reset()">reset</button>
+        <p ng-show="!kc.inputIsValid()">invalid input</p>
+        <ol ng-if="kc.displaySequence">
+          <li ng-repeat="step in kc.sequence track by $index">
+            <span class="descending">{{::step.descending}}</span> -
+            <span class="ascending">{{::step.ascending}}</span> =
+            <span class="number">{{::step.number}}</span>
+          </li>
+        </ol>
+      </div>
     </div>
+
   </body>
 </html>
