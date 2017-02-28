@@ -90,7 +90,7 @@ function KaprekarController ($timeout) {
     var n_asc = parseInt(asc.join(''), 10);
     var nextNumber = n_desc - n_asc;
     var n_stringNumber = addZeroes(nextNumber);
-    addToSequence(n_stringNumber, n_asc, n_desc);
+    addToSequence(n_stringNumber, addZeroes(n_asc), addZeroes(n_desc));
     return n_stringNumber;
   }
 
